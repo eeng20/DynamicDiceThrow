@@ -1,5 +1,6 @@
 package edu.temple.dicethrow
 
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -33,7 +34,12 @@ class MainActivity : AppCompatActivity(), ButtonFragment.ButtonInterface {
         */
     // Remember to place Fragment transactions on BackStack so then can be reversed
     override fun buttonClicked() {
-
+        if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainerView, DieFragment())
+                .addToBackStack(null)
+                .commit()
+        }
     }
 
 
